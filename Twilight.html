@@ -134,7 +134,14 @@ img.onload=function(){
   twCv.style.height=(img.naturalHeight/img.naturalWidth*280)+"px";
   twCtx.drawImage(img,0,0);
   const id=twCtx.getImageData(0,0,twCv.width,twCv.height),d=id.data;
-  for(let i=0;i<d.length;i+=4){if(d[i]>200&&d[i+1]>200&&d[i+2]>200)d[i+3]=0;}
+  for(let i=0;i<d.length;i+=4){
+    const r=d[i],g=d[i+1],b=d[i+2];
+    // Solo eliminar el gris del cuadriculado (gris claro alternado ~192 y ~255)
+    // El cuadriculado tiene exactamente estos dos colores
+    const isWhite = r>240 && g>240 && b>240;
+    const isGray  = r>180 && r<210 && g>180 && g<210 && b>180 && b<210;
+    if(isWhite || isGray) d[i+3]=0;
+  }
   twCtx.putImageData(id,0,0);
   const iw=280,hx=iw*0.54,hy=8;
   for(let i=0;i<24;i++){
