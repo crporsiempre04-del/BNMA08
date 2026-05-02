@@ -128,7 +128,6 @@ const twCv=document.getElementById("tw"),twCtx=twCv.getContext("2d");
 const wrap=document.getElementById("twWrap");
 const cols=["#ff44ff","#ee22ff","#cc88ff","#ff99ee","#ffffff","#bbaaff"];
 const img=new Image();
-img.crossOrigin="anonymous";
 img.onload=function(){
   twCv.width=img.naturalWidth;twCv.height=img.naturalHeight;
   twCv.style.width="280px";
@@ -145,7 +144,7 @@ img.onload=function(){
     wrap.appendChild(p);
   }
 };
-img.src="https://upload.wikimedia.org/wikipedia/en/d/d5/Twilight_Sparkle_My_Little_Pony_character.png";
+img.src="twilight.png";
 </script>
 </body>
 </html>
